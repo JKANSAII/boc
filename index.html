@@ -5,68 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bunch of Creatives</title>
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: #000;
-  text-align: center;
-  overflow-x: hidden;
-  transition: background 0.5s;
-}
-
-/* Loader */
-#loader {
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background:#fff;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  z-index:9999;
-}
-#click-container {
-  display:flex; flex-direction:column; align-items:center;
-  cursor:pointer; user-select:none;
-}
+body { margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; text-align:center; overflow-x:hidden; }
+#loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; }
+#click-container { cursor:pointer; user-select:none; display:flex; flex-direction:column; align-items:center; z-index:10; }
 #apple-logo { width:120px; height:auto; }
 #click-text { font-size:1.2rem; margin-top:10px; color:#555; }
 .progress-bar { width:200px; height:12px; background:#ccc; border-radius:8px; overflow:hidden; margin-top:20px; }
-.progress { height:100%; width:0; background:#000; transition: width 1s ease-in-out; }
-
-/* Main Content */
-#main-content { padding:40px 20px; transition: opacity 0.5s; }
-.header { display:flex; justify-content:center; align-items:center; gap:120px; margin-bottom:25px; }
+.progress { width:0; height:100%; background:#000; }
+#main-content { display:none; padding:40px 20px; text-align:center; transition: opacity 0.5s ease; }
+.header { display:flex; justify-content:center; align-items:center; gap:200px; margin-bottom:25px; }
 .main-logo { width:100px; height:auto; }
 .hamburger { font-size:2rem; cursor:pointer; user-select:none; transition: transform 0.3s; }
 .hamburger:hover { transform:rotate(90deg); }
-
-h1 { font-family:"Times New Roman", serif; font-size:3rem; font-weight:bold; margin-bottom:15px; }
-h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
-
-.button-container { display:flex; flex-direction:column; gap:20px; align-items:center; max-width:400px; margin:auto; width:100%; }
-.btn { display:flex; align-items:center; gap:12px; text-decoration:none; color:white; padding:18px 30px; font-size:1.3rem; font-weight:bold; border-radius:14px; box-shadow:0 4px 8px rgba(0,0,0,0.15); transition:transform 0.3s; width:100%; justify-content:center; }
-.btn img { width:28px; height:28px; }
-.btn:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
-
-.youtube { background:#ff0000; }
-.outlook { background:#0072c6; }
-.tiktok { background:#010101; }
-.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
-
 /* Menu */
 #menu { display:none; position:absolute; top:70px; right:20px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; text-align:left; transition: opacity 0.3s; }
 #menu.show { display:block; opacity:1; }
 #menu ul { list-style:none; padding:0; margin:0; }
 #menu ul li { margin:6px 0; font-size:1rem; cursor:pointer; }
 #menu ul li:hover { color:#0072c6; }
-
 /* Members / Lore */
 #members, #lore { display:none; margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto; text-align:left; opacity:0; transform:translateY(50px); transition: all 0.5s ease; }
 #members.show, #lore.show { display:block; opacity:1; transform:translateY(0); }
-
-/* Member Pop-up */
 #member-card { position: fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3); max-width:400px; width:90%; text-align:center; z-index:10000; opacity:0; transition: transform 0.4s ease, opacity 0.4s ease; }
 #member-card button { margin-top:15px; padding:8px 16px; cursor:pointer; }
+/* Buttons */
+.button-container { display:flex; flex-direction:column; gap:20px; align-items:center; max-width:400px; margin:auto; width:100%; margin-top:20px; }
+.btn { display:flex; align-items:center; gap:12px; text-decoration:none; color:white; padding:15px 25px; font-size:1.2rem; font-weight:bold; border-radius:12px; width:100%; justify-content:center; }
+.youtube { background:#ff0000; }
+.outlook { background:#0072c6; }
+.tiktok { background:#010101; }
+.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
+/* YouTube Video */
+.youtube-container { display:flex; justify-content:center; margin-top:30px; max-width:100%; }
+/* Animations */
+.show-element { opacity:1 !important; transform:translateY(0) !important; transition:all 0.5s ease; }
 </style>
 </head>
 <body>
@@ -79,7 +51,7 @@ h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
   </div>
   <div class="progress-bar"><div class="progress" id="progress"></div></div>
   <audio id="startup-sound" src="https://www.myinstants.com/media/sounds/mac-os-big-sur-startup.mp3"></audio>
-  <audio id="background-music" loop></audio>
+  <audio id="background-music" loop src="https://archive.org/download/07.-f-e-e-l/01.%20%E2%98%AE%E2%98%AE%E2%98%AE.mp3"></audio>
 </div>
 
 <!-- Main Content -->
@@ -100,11 +72,11 @@ h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
 
   <div id="members">
     <ul>
-      <li class="member" data-desc="Member 1: Digital artist specializing in surreal visuals.">Member 1</li>
-      <li class="member" data-desc="Member 2: Photographer focusing on urban landscapes.">Member 2</li>
-      <li class="member" data-desc="Member 3: Fashion designer bringing unique styles.">Member 3</li>
-      <li class="member" data-desc="Member 4: Music producer creating electronic beats.">Member 4</li>
-      <li class="member" data-desc="Member 5: Videographer capturing cinematic stories.">Member 5</li>
+      <li class="member" data-desc="@natzpaintedit<br>creative connecter/founder of BOC (painter, photographer, creative strategist)<br>using creativity to build bridges between people, places and ideas<br>📍London">Natacha</li>
+      <li class="member" data-desc="@capturedbybh<br>photographer (music/fashion)<br>destined to capture the culture<br>📍London">Ben</li>
+      <li class="member" data-desc="@stylmeri<br>fashion content creator (streetwear/y2k/experimental)<br>styl on them<br>📍United Kingdom">Meriem</li>
+      <li class="member" data-desc="@flx_end<br>artist (videographer/photographer/painter)<br>I would much rather fail gloriously than not venture, not try -A.B<br>📍London">Fizzy</li>
+      <li class="member" data-desc="@j2kansai<br>music producer (experimental hip-hop), coder (html, CSS and js)<br>small in age, heavy on the sound<br>📍United Kingdom">James</li>
     </ul>
   </div>
 
@@ -117,11 +89,15 @@ h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
     <button id="close-lore-members">Back</button>
   </div>
 
-  <div class="button-container">
-    <a class="btn youtube" href="https://youtube.com/@bunchofcreatives-boc" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"> YouTube</a>
-    <a class="btn outlook" href="mailto:bunchofcreatives@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"> Email</a>
-    <a class="btn tiktok" href="https://www.tiktok.com/@weareboc?_t=ZN-8zTZ3wRLHNu&_r=1" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg"> TikTok</a>
-    <a class="btn instagram" href="https://www.instagram.com/boc.co.uk?igsh=ZTQ4YjRvdnUxbzd2" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"> Instagram</a>
+  <div class="button-container" id="redirects">
+    <a class="btn youtube" href="https://youtube.com/@bunchofcreatives-boc" target="_blank">YouTube</a>
+    <a class="btn outlook" href="mailto:bunchofcreatives@gmail.com">Email</a>
+    <a class="btn tiktok" href="https://www.tiktok.com/@weareboc?_t=ZN-8zTZ3wRLHNu&_r=1" target="_blank">TikTok</a>
+    <a class="btn instagram" href="https://www.instagram.com/boc.co.uk?igsh=ZTQ4YjRvdnUxbzd2" target="_blank">Instagram</a>
+  </div>
+
+  <div class="youtube-container" id="youtube-player">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/acmvllMhUJo" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
@@ -132,75 +108,70 @@ h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
 </div>
 
 <script>
-// Loader click
-const clickContainer = document.getElementById("click-container");
-const progress = document.getElementById("progress");
-const loader = document.getElementById("loader");
-const mainContent = document.getElementById("main-content");
-const startupSound = document.getElementById("startup-sound");
-const bgMusic = document.getElementById("background-music");
+const clickContainer = document.getElementById('click-container');
+const loader = document.getElementById('loader');
+const progress = document.getElementById('progress');
+const mainContent = document.getElementById('main-content');
+const startupSound = document.getElementById('startup-sound');
+const bgMusic = document.getElementById('background-music');
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+const showMembers = document.getElementById('show-members');
+const showLore = document.getElementById('show-lore');
+const membersDiv = document.getElementById('members');
+const loreDiv = document.getElementById('lore');
+const closeLoreMembers = document.getElementById('close-lore-members');
+const memberCard = document.getElementById('member-card');
+const cardName = document.getElementById('card-name');
+const cardDesc = document.getElementById('card-desc');
+const closeCard = document.getElementById('close-card');
 
-clickContainer.addEventListener("click", ()=>{
-  startupSound.play().catch(()=>{});
-  document.getElementById("click-text").style.display="none";
-  
-  progress.style.width="50%";
-  setTimeout(()=>{ progress.style.width="55%"; },1500);
-  setTimeout(()=>{ progress.style.width="100%"; },2500);
-
-  setTimeout(()=>{
-    loader.style.transition="opacity 0.5s";
-    loader.style.opacity=0;
+clickContainer.addEventListener('click', ()=>{
+    startupSound.play().catch(()=>{});
+    progress.style.transition="width 1.5s linear";
+    progress.style.width="50%";
+    setTimeout(()=>{progress.style.width="55%";},1500);
+    setTimeout(()=>{progress.style.transition="width 1.5s linear"; progress.style.width="100%";},2000);
     setTimeout(()=>{
-      loader.style.display="none";
-      mainContent.style.display="block";
-      // NEW background song
-      bgMusic.src="https://archive.org/download/07.-f-e-e-l/01.%20%E2%98%AE%E2%98%AE%E2%98%AE.mp3";
-      bgMusic.play().catch(()=>{});
-    },500);
-  },4000);
+        loader.style.display="none";
+        mainContent.style.display="block";
+        bgMusic.play().catch(()=>{});
+        document.querySelector('.button-container').classList.add('show-element');
+        document.querySelector('.youtube-container').classList.add('show-element');
+    },3000);
 });
 
 // Hamburger toggle
-const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("menu");
-hamburger.addEventListener("click",()=>{ menu.classList.toggle("show"); });
-
-// Menu options
-function showSection(sectionId){
-  mainContent.style.opacity=0.2;
-  document.getElementById("members").classList.remove("show");
-  document.getElementById("lore").classList.remove("show");
-  setTimeout(()=>{
-    document.getElementById(sectionId).classList.add("show");
-  },200);
-}
-document.getElementById("show-members").addEventListener("click",()=>{ showSection("members"); menu.classList.remove("show"); });
-document.getElementById("show-lore").addEventListener("click",()=>{ showSection("lore"); menu.classList.remove("show"); });
-
-// Back button for members/lore
-document.getElementById("close-lore-members").addEventListener("click",()=>{
-  document.getElementById("members").classList.remove("show");
-  document.getElementById("lore").classList.remove("show");
-  mainContent.style.opacity=1;
+hamburger.addEventListener('click', ()=>{menu.classList.toggle('show');});
+showMembers.addEventListener('click', ()=>{
+    membersDiv.classList.add('show');
+    loreDiv.classList.remove('show');
+    menu.classList.remove('show');
+});
+showLore.addEventListener('click', ()=>{
+    loreDiv.classList.add('show');
+    membersDiv.classList.remove('show');
+    menu.classList.remove('show');
+});
+closeLoreMembers.addEventListener('click', ()=>{
+    loreDiv.classList.remove('show');
+    membersDiv.classList.remove('show');
 });
 
-// Member popups
-const memberCard = document.getElementById("member-card");
-const cardName = document.getElementById("card-name");
-const cardDesc = document.getElementById("card-desc");
-document.querySelectorAll(".member").forEach(el=>{
-  el.addEventListener("click",()=>{
-    cardName.textContent = el.textContent;
-    cardDesc.textContent = el.dataset.desc;
-    memberCard.style.transform="translate(-50%,-50%) scale(1)";
-    memberCard.style.opacity=1;
-  });
+// Members click
+document.querySelectorAll('.member').forEach(member=>{
+    member.addEventListener('click', ()=>{
+        cardName.innerHTML = member.innerText;
+        cardDesc.innerHTML = member.dataset.desc;
+        memberCard.style.transform="translate(-50%,-50%) scale(1)";
+        memberCard.style.opacity="1";
+    });
 });
-document.getElementById("close-card").addEventListener("click",()=>{
-  memberCard.style.transform="translate(-50%,-50%) scale(0)";
-  memberCard.style.opacity=0;
+closeCard.addEventListener('click', ()=>{
+    memberCard.style.transform="translate(-50%,-50%) scale(0)";
+    memberCard.style.opacity="0";
 });
 </script>
+
 </body>
 </html>

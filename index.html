@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bunch of Creatives</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  overflow-x: hidden;
+  transition: background 0.5s;
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background:#fff;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  z-index:9999;
+}
+#click-container {
+  display:flex; flex-direction:column; align-items:center;
+  cursor:pointer; user-select:none;
+}
+#apple-logo { width:120px; height:auto; }
+#click-text { font-size:1.2rem; margin-top:10px; color:#555; }
+.progress-bar { width:200px; height:12px; background:#ccc; border-radius:8px; overflow:hidden; margin-top:20px; }
+.progress { height:100%; width:0; background:#000; transition: width 1s ease-in-out; }
+
+/* Main Content */
+#main-content { padding:40px 20px; transition: opacity 0.5s; }
+.header { display:flex; justify-content:center; align-items:center; gap:120px; margin-bottom:25px; }
+.main-logo { width:100px; height:auto; }
+.hamburger { font-size:2rem; cursor:pointer; user-select:none; transition: transform 0.3s; }
+.hamburger:hover { transform:rotate(90deg); }
+
+h1 { font-family:"Times New Roman", serif; font-size:3rem; font-weight:bold; margin-bottom:15px; }
+h2 { font-size:1.3rem; font-weight:normal; margin-bottom:40px; color:#444; }
+
+.button-container { display:flex; flex-direction:column; gap:20px; align-items:center; max-width:400px; margin:auto; width:100%; }
+.btn { display:flex; align-items:center; gap:12px; text-decoration:none; color:white; padding:18px 30px; font-size:1.3rem; font-weight:bold; border-radius:14px; box-shadow:0 4px 8px rgba(0,0,0,0.15); transition:transform 0.3s; width:100%; justify-content:center; }
+.btn img { width:28px; height:28px; }
+.btn:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
+
+.youtube { background:#ff0000; }
+.outlook { background:#0072c6; }
+.tiktok { background:#010101; }
+.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
+
+/* Menu */
+#menu { display:none; position:absolute; top:70px; right:20px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; text-align:left; transition: opacity 0.3s; }
+#menu.show { display:block; opacity:1; }
+#menu ul { list-style:none; padding:0; margin:0; }
+#menu ul li { margin:6px 0; font-size:1rem; cursor:pointer; }
+#menu ul li:hover { color:#0072c6; }
+
+/* Members / Lore */
+#members, #lore { display:none; margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto; text-align:left; opacity:0; transform:translateY(50px); transition: all 0.5s ease; }
+#members.show, #lore.show { display:block; opacity:1; transform:translateY(0); }
+
+/* Member Pop-up */
+#member-card { position: fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3); max-width:400px; width:90%; text-align:center; z-index:10000; opacity:0; transition: transform 0.4s ease, opacity 0.4s ease; }
+#member-card button { margin-top:15px; padding:8px 16px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div id="click-container">
+    <img id="apple-logo" src="https://i.ibb.co/Vpz44VfC/IMG-6606.png" alt="Apple Logo">
+    <div id="click-text">Click to Start</div>
+  </div>
+  <div class="progress-bar"><div class="progress" id="progress"></div></div>
+  <audio id="startup-sound" src="https://www.myinstants.com/media/sounds/mac-os-big-sur-startup.mp3"></audio>
+  <audio id="background-music" loop></audio>
+</div>
+
+<!-- Main Content -->
+<div id="main-content">
+  <div class="header">
+    <img class="main-logo" src="https://i.ibb.co/Vpz44VfC/IMG-6606.png" alt="BOC Logo">
+    <div class="hamburger" id="hamburger">☰</div>
+  </div>
+  <h1>Bunch of Creatives</h1>
+  <h2>Welcome to the BOC page. Redirects are below</h2>
+
+  <div id="menu">
+    <ul>
+      <li id="show-members">View Members</li>
+      <li id="show-lore">Read Lore</li>
+    </ul>
+  </div>
+
+  <div id="members">
+    <ul>
+      <li class="member" data-desc="Member 1: Digital artist specializing in surreal visuals.">Member 1</li>
+      <li class="member" data-desc="Member 2: Photographer focusing on urban landscapes.">Member 2</li>
+      <li class="member" data-desc="Member 3: Fashion designer bringing unique styles.">Member 3</li>
+      <li class="member" data-desc="Member 4: Music producer creating electronic beats.">Member 4</li>
+      <li class="member" data-desc="Member 5: Videographer capturing cinematic stories.">Member 5</li>
+    </ul>
+  </div>
+
+  <div id="lore">
+    <p>Bunch of Creatives<br><br>
+    an ever growing collective bunch of creative beings bonded together by vision, support, and creativity.<br><br>
+    with a desire to connect and to project unique ideas through photography and painting to content, fashion, music and more.<br><br>
+    we are a family of like-minded people coexisting and turning imagination into reality, growing together from support, collaboration, and creating memories with real connections.<br><br>
+    BOC is where creativity becomes community, and community becomes home.</p>
+    <button id="close-lore-members">Back</button>
+  </div>
+
+  <div class="button-container">
+    <a class="btn youtube" href="https://youtube.com/@bunchofcreatives-boc" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"> YouTube</a>
+    <a class="btn outlook" href="mailto:bunchofcreatives@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"> Email</a>
+    <a class="btn tiktok" href="https://www.tiktok.com/@weareboc?_t=ZN-8zTZ3wRLHNu&_r=1" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg"> TikTok</a>
+    <a class="btn instagram" href="https://www.instagram.com/boc.co.uk?igsh=ZTQ4YjRvdnUxbzd2" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"> Instagram</a>
+  </div>
+</div>
+
+<div id="member-card">
+  <h3 id="card-name"></h3>
+  <p id="card-desc"></p>
+  <button id="close-card">Close</button>
+</div>
+
+<script>
+// Loader click
+const clickContainer = document.getElementById("click-container");
+const progress = document.getElementById("progress");
+const loader = document.getElementById("loader");
+const mainContent = document.getElementById("main-content");
+const startupSound = document.getElementById("startup-sound");
+const bgMusic = document.getElementById("background-music");
+
+clickContainer.addEventListener("click", ()=>{
+  startupSound.play().catch(()=>{});
+  document.getElementById("click-text").style.display="none";
+  
+  progress.style.width="50%";
+  setTimeout(()=>{ progress.style.width="55%"; },1500);
+  setTimeout(()=>{ progress.style.width="100%"; },2500);
+
+  setTimeout(()=>{
+    loader.style.transition="opacity 0.5s";
+    loader.style.opacity=0;
+    setTimeout(()=>{
+      loader.style.display="none";
+      mainContent.style.display="block";
+      // NEW background song
+      bgMusic.src="https://archive.org/download/07.-f-e-e-l/01.%20%E2%98%AE%E2%98%AE%E2%98%AE.mp3";
+      bgMusic.play().catch(()=>{});
+    },500);
+  },4000);
+});
+
+// Hamburger toggle
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+hamburger.addEventListener("click",()=>{ menu.classList.toggle("show"); });
+
+// Menu options
+function showSection(sectionId){
+  mainContent.style.opacity=0.2;
+  document.getElementById("members").classList.remove("show");
+  document.getElementById("lore").classList.remove("show");
+  setTimeout(()=>{
+    document.getElementById(sectionId).classList.add("show");
+  },200);
+}
+document.getElementById("show-members").addEventListener("click",()=>{ showSection("members"); menu.classList.remove("show"); });
+document.getElementById("show-lore").addEventListener("click",()=>{ showSection("lore"); menu.classList.remove("show"); });
+
+// Back button for members/lore
+document.getElementById("close-lore-members").addEventListener("click",()=>{
+  document.getElementById("members").classList.remove("show");
+  document.getElementById("lore").classList.remove("show");
+  mainContent.style.opacity=1;
+});
+
+// Member popups
+const memberCard = document.getElementById("member-card");
+const cardName = document.getElementById("card-name");
+const cardDesc = document.getElementById("card-desc");
+document.querySelectorAll(".member").forEach(el=>{
+  el.addEventListener("click",()=>{
+    cardName.textContent = el.textContent;
+    cardDesc.textContent = el.dataset.desc;
+    memberCard.style.transform="translate(-50%,-50%) scale(1)";
+    memberCard.style.opacity=1;
+  });
+});
+document.getElementById("close-card").addEventListener("click",()=>{
+  memberCard.style.transform="translate(-50%,-50%) scale(0)";
+  memberCard.style.opacity=0;
+});
+</script>
+</body>
+</html>

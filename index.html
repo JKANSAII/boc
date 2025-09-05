@@ -7,7 +7,7 @@
 <style>
 body { margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; text-align:center; overflow-x:hidden; }
 #loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; }
-#click-container { cursor:pointer; user-select:none; display:flex; flex-direction:column; align-items:center; z-index:10; }
+#click-container { cursor:pointer; user-select:none; display:flex; flex-direction:column; align-items:center; z-index:10; background:none; border:none; pointer-events:all; }
 #apple-logo { width:120px; height:auto; }
 #click-text { font-size:1.2rem; margin-top:10px; color:#555; }
 .progress-bar { width:200px; height:12px; background:#ccc; border-radius:8px; overflow:hidden; margin-top:20px; }
@@ -45,130 +45,10 @@ body { margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; text
 
 <!-- Loader -->
 <div id="loader">
-  <div id="click-container">
+  <button id="click-container">
     <img id="apple-logo" src="https://i.ibb.co/Vpz44VfC/IMG-6606.png" alt="Apple Logo">
     <div id="click-text">Click to Start</div>
-  </div>
-  <div class="progress-bar"><div class="progress" id="progress"></div></div>
-  <audio id="startup-sound" src="https://www.myinstants.com/media/sounds/mac-os-big-sur-startup.mp3"></audio>
-  <audio id="background-music" loop src="https://archive.org/download/empire-of-the-sun-walking-on-a-dream-instrumental-slowed-reverb/Empire%20Of%20The%20Sun%20-%20Walking%20On%20A%20Dream%20instrumental%20%28slowed%20reverb%29.mp3"></audio>
-</div>
-
-<!-- Main Content -->
-<div id="main-content">
-  <div class="header">
-    <img class="main-logo" src="https://i.ibb.co/Vpz44VfC/IMG-6606.png" alt="BOC Logo">
-    <div class="hamburger" id="hamburger">☰</div>
-  </div>
-  <h1>Bunch of Creatives</h1>
-  <h2>Welcome to the BOC page. Redirects are below</h2>
-
-  <div id="menu">
-    <ul>
-      <li id="show-members">View Members</li>
-      <li id="show-lore">Read Lore</li>
-    </ul>
-  </div>
-
-  <div id="members">
-    <ul>
-      <li class="member" data-desc="@natzpaintedit<br>creative connecter/founder of BOC (painter, photographer, creative strategist)<br>using creativity to build bridges between people, places and ideas<br>📍London">Natacha</li>
-      <li class="member" data-desc="@capturedbybh<br>photographer (music/fashion)<br>destined to capture the culture<br>📍London">Ben</li>
-      <li class="member" data-desc="@stylmeri<br>fashion content creator (streetwear/y2k/experimental)<br>styl on them<br>📍United Kingdom">Meriem</li>
-      <li class="member" data-desc="@flx_end<br>artist (videographer/photographer/painter)<br>I would much rather fail gloriously than not venture, not try -A.B<br>📍London">Fizzy</li>
-      <li class="member" data-desc="@j2kansai<br>music producer (experimental hip-hop), coder (html, CSS and js)<br>small in age, heavy on the sound<br>📍United Kingdom">James</li>
-    </ul>
-  </div>
-
-  <div id="lore">
-    <p>Bunch of Creatives<br><br>
-    an ever growing collective bunch of creative beings bonded together by vision, support, and creativity.<br><br>
-    with a desire to connect and to project unique ideas through photography and painting to content, fashion, music and more.<br><br>
-    we are a family of like-minded people coexisting and turning imagination into reality, growing together from support, collaboration, and creating memories with real connections.<br><br>
-    BOC is where creativity becomes community, and community becomes home.</p>
-    <button id="close-lore-members">Back</button>
-  </div>
-
-  <div class="button-container" id="redirects">
-    <a class="btn youtube" href="https://youtube.com/@bunchofcreatives-boc" target="_blank">YouTube</a>
-    <a class="btn outlook" href="mailto:bunchofcreatives@gmail.com">Email</a>
-    <a class="btn tiktok" href="https://www.tiktok.com/@weareboc?_t=ZN-8zTZ3wRLHNu&_r=1" target="_blank">TikTok</a>
-    <a class="btn instagram" href="https://www.instagram.com/boc.co.uk?igsh=ZTQ4YjRvdnUxbzd2" target="_blank">Instagram</a>
-  </div>
-
-  <div class="youtube-container" id="youtube-player">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/1XlwtuLN_Fw" frameborder="0" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div id="member-card">
-  <h3 id="card-name"></h3>
-  <p id="card-desc"></p>
-  <button id="close-card">Close</button>
-</div>
-
-<script>
-const clickContainer = document.getElementById('click-container');
-const loader = document.getElementById('loader');
-const progress = document.getElementById('progress');
-const mainContent = document.getElementById('main-content');
-const startupSound = document.getElementById('startup-sound');
-const bgMusic = document.getElementById('background-music');
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('menu');
-const showMembers = document.getElementById('show-members');
-const showLore = document.getElementById('show-lore');
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bunch of Creatives</title>
-<style>
-body { margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; text-align:center; overflow-x:hidden; }
-#loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; }
-#click-container { cursor:pointer; user-select:none; display:flex; flex-direction:column; align-items:center; z-index:10; }
-#apple-logo { width:120px; height:auto; }
-#click-text { font-size:1.2rem; margin-top:10px; color:#555; }
-.progress-bar { width:200px; height:12px; background:#ccc; border-radius:8px; overflow:hidden; margin-top:20px; }
-.progress { width:0; height:100%; background:#000; }
-#main-content { display:none; padding:40px 20px; text-align:center; transition: opacity 0.5s ease; }
-.header { display:flex; justify-content:center; align-items:center; gap:220px; margin-bottom:25px; }
-.main-logo { width:100px; height:auto; }
-.hamburger { font-size:2rem; cursor:pointer; user-select:none; transition: transform 0.3s; }
-.hamburger:hover { transform:rotate(90deg); }
-/* Menu */
-#menu { display:none; position:absolute; top:70px; right:20px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; text-align:left; transition: opacity 0.3s; }
-#menu.show { display:block; opacity:1; }
-#menu ul { list-style:none; padding:0; margin:0; }
-#menu ul li { margin:6px 0; font-size:1rem; cursor:pointer; }
-#menu ul li:hover { color:#0072c6; }
-/* Members / Lore */
-#members, #lore { display:none; margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto; text-align:left; opacity:0; transform:translateY(50px); transition: all 0.5s ease; }
-#members.show, #lore.show { display:block; opacity:1; transform:translateY(0); }
-#member-card { position: fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.3); max-width:400px; width:90%; text-align:center; z-index:10000; opacity:0; transition: transform 0.4s ease, opacity 0.4s ease; }
-#member-card button { margin-top:15px; padding:8px 16px; cursor:pointer; }
-/* Buttons */
-.button-container { display:flex; flex-direction:column; gap:20px; align-items:center; max-width:400px; margin:auto; width:100%; margin-top:20px; }
-.btn { display:flex; align-items:center; gap:12px; text-decoration:none; color:white; padding:15px 25px; font-size:1.2rem; font-weight:bold; border-radius:12px; width:100%; justify-content:center; }
-.youtube { background:#ff0000; }
-.outlook { background:#0072c6; }
-.tiktok { background:#010101; }
-.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
-/* YouTube Video */
-.youtube-container { display:flex; justify-content:center; margin-top:30px; max-width:100%; }
-/* Animations */
-.show-element { opacity:1 !important; transform:translateY(0) !important; transition:all 0.5s ease; }
-</style>
-</head>
-<body>
-
-<!-- Loader -->
-<div id="loader">
-  <div id="click-container">
-    <img id="apple-logo" src="https://i.ibb.co/Vpz44VfC/IMG-6606.png" alt="Apple Logo">
-    <div id="click-text">Click to Start</div>
-  </div>
+  </button>
   <div class="progress-bar"><div class="progress" id="progress"></div></div>
   <audio id="startup-sound" src="https://www.myinstants.com/media/sounds/mac-os-big-sur-startup.mp3"></audio>
   <audio id="background-music" loop src="https://archive.org/download/empire-of-the-sun-walking-on-a-dream-instrumental-slowed-reverb/Empire%20Of%20The%20Sun%20-%20Walking%20On%20A%20Dream%20instrumental%20%28slowed%20reverb%29.mp3"></audio>
